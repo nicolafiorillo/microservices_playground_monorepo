@@ -1,0 +1,25 @@
+# Create: kubectl apply -f service-a-deploy.yaml
+# Delete: kubectl delete deployment service-a
+# List:   kubectl get deployments
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: service-a
+spec:
+  selector:
+    matchLabels:
+      app: service_a
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: service_a
+    spec:
+      containers:
+      - name: server
+        image: service_a
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 8080
+        
